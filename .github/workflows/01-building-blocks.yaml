@@ -12,7 +12,7 @@ jobs:
 
   echo-goodbye:
     runs-on: ubruntu-latest
-    stpes:
+    steps:
       - name: succesful step
         run:  |
            echo "successful step on job 2"
