@@ -11,7 +11,7 @@ jobs:
         run: echo "Hellow world."
 
   echo-goodbye:
-    runs-on: ubruntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: succesful step
         run:  |
