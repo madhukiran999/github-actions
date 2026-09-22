@@ -1,0 +1,15 @@
+name: 02-workflow-evetns
+
+on: 
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  echo-hello:
+     runs-on: ubuntu-latest
+     steps:
+     - name: See the trigger event
+       run: echo " i am triggered by ${{ github.event_name }} event"
