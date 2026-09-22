@@ -1,4 +1,4 @@
-name: 02-workflow-evetns
+name: 02-workflow-events
 
 on: 
   push:

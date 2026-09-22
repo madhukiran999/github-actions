@@ -1,7 +1,9 @@
 name: 01 - Budilding Blocks
 
-on: push
+on: 
+  push:
 
+    
 jobs:
 
   echo-hello:
