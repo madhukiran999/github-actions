@@ -1,0 +1,22 @@
+name: 01 - Budilding Blocks
+
+on: push
+
+jobs:
+
+  echo-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: say Hellow
+        run: echo "Hellow world."
+
+  echo-goodbye:
+    runs-on: ubruntu-latest
+    stpes:
+      - name: succesful step
+        run:  |
+           echo "successful step on job 2"
+           exit 0
+
+      - name: say goodbye
+        run: echo "Goodbye"
