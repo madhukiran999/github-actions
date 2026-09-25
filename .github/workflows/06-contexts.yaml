@@ -5,13 +5,15 @@ on:
   push:
   workflow_dispatch:
     inputs:
-      debug:
-        type: boolean
-        default: false
+        debug: 
+            type: boolean
+            default: false
 
 jobs:
     echo-data:
         runs-on: ubuntu-latest
+        env:
+            my_env: "job"
         
 
         steps:
@@ -26,8 +28,11 @@ jobs:
                 echo "run_number is ${{ github.run_number }}"
 
             - name: Print varibales
-              run: |
-                 echo " my personal variable is ${{ vars.my_Var }}"
+              run:  echo " my personal variable is ${{ vars.my_ar }}"
 
-            - name: env variables
+            - name: print env variables
+              env:
+                my_envs: "step"
+              run: |
+                   echo "my_envs is ${{ env.my_envs }}"
             
