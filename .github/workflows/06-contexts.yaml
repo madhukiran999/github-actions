@@ -28,7 +28,7 @@ jobs:
                 echo "run_number is ${{ github.run_number }}"
 
             - name: Print varibales
-              run:  echo " my personal variable is ${{ vars.my_ar }}"
+              run:  echo " my personal variable is ${{ vars.my_var }}"
 
             - name: print env variables
               env:
