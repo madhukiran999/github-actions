@@ -13,7 +13,7 @@ jobs:
     echo-data:
         runs-on: ubuntu-latest
         env:
-            my_env: "job"
+            my_envs: "job"
         
 
         steps:
