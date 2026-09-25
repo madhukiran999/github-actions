@@ -1,0 +1,29 @@
+name: 07-expressions
+run-name: 07-expresions-${{ inputs.debug && 'ON' || 'OFF'}}
+
+on: 
+    push:
+    workflow_dispatch:
+        inputs:
+            debug:
+                type: boolean
+                default: false
+jobs:
+    echo-date:
+        runs-on: ubuntu-latest
+        steps:
+
+        - name: "[debug-step] print start up data"
+          if: ${{ inputs.debug }}
+          run:  |
+                echo "Event name is ${{ github.event_name }}"
+                echo "ref is ${{ github.ref }}"
+                echo " sha is ${{ github.sha }}"
+                echo " actor is ${{ github.actor }}"
+                echo " workflow is ${{ github.workflow }}"
+                echo "run_id is ${{ github.run_id }}"
+                echo "run_number is ${{ github.run_number }}"
+
+        - name: "[debug] run from only main branch"
+          if: ${{ github.ref == 'refs/heads/main' }}
+          run: echo " running from main branch"
