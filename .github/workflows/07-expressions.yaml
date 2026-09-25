@@ -25,5 +25,5 @@ jobs:
                 echo "run_number is ${{ github.run_number }}"
 
         - name: "[debug] run from only main branch"
-          if: ${{ github.ref == 'refs/heads/main' }}
+          if: ${{ inputs.debug &&github.ref == 'refs/heads/main' }}
           run: echo " running from main branch"
