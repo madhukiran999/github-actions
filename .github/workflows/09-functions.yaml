@@ -6,6 +6,22 @@ on:
   workflow_dispatch: 
 
 jobs:
+    github-functions:
+        runs-on: ubuntu-latest
+        steps:
+            - name: print github PR titles
+              run: echo "${{ github.event.pull_request.title }}"
+
+            - name: print PR labels
+              run:  |
+                 cat << EOF
+                 ${{ toJson(github.event.pull_request.labels) }}
+                 EOF
+
+            - name: Bug step
+              if: ${{ !cancelled() && contains(github.event.pull_request.title, 'fix')}}
+              run: echo "i am a bug fix"
+
     status-check-functions:
         runs-on: ubuntu-latest
         steps:
