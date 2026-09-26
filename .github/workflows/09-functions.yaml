@@ -1,7 +1,9 @@
 name: 09-functions
 
 on:
-  pull_request
+  pull_request:
+  push:
+  workflow_dispatch: 
 
 jobs:
     status-check-functions:
