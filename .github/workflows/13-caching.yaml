@@ -1,0 +1,45 @@
+name: 13-caching
+on: 
+    workflow_dispatch:
+        inputs:
+            use-cache:
+                type: boolean
+                description: whthere to use cache or not
+                default: true
+            node-version:
+                description: node version to use
+                type: choice
+                options:
+                    - 24.0.0
+                    - 20.0.0
+                default: 21.0.0
+            
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: 13-caching/react-app
+        steps:
+            - name: check out code
+              uses: actions/checkout@v4
+
+            - name: setup node
+              uses: actions/setup-node@v3
+              with:
+                node-version: "${{ inputs.node_version }}"
+            
+            - name: install dependencies
+              run: npm ci
+
+            - name: test
+              run: npm run test
+
+            - name: build
+              run: npm run build
+
+            - name: deploy
+              run: echo "Deploying to production"
+
+
+             
