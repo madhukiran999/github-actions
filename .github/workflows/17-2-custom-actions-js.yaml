@@ -1,0 +1,15 @@
+name: 17-2 custom-actions-js
+on:
+ workflow_dispatch
+  inputs:
+    basebranch
+    target branch
+    working dorectory
+    debug
+
+jobs:
+    dependency_update:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout
+              run: actions/checkout@v3
