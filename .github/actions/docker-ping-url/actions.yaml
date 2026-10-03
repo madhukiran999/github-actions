@@ -1,0 +1,19 @@
+name: ping URL
+description: Ping URL until maximum trails have exceeded. if result is not 200 umtil then, fails the action
+inputs:
+  url: 
+   description: URL to ping.
+   required: true
+  max_trails:
+    description: maximum number of trails until action fails.
+    default: '10'
+    required: false
+  delay:
+    description: DELAY IN SECONDS BETWEEN TRAILS
+    default: '5'
+    required: true
+
+
+  runs:
+    using: docker
+    image: Dockerfile
