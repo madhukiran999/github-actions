@@ -9,6 +9,7 @@ def ping_url(url,delay,max_trails):
          response=requests.get(url)
          if response.status_code==200:
             print(f"website {url} is reachable")
+            return True
       except requests.ConnectionError:
          print(f"website {url} is unreachable retry in {delay} seconds..")
          time.sleep(delay)
