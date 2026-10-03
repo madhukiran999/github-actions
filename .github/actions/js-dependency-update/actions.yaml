@@ -1,0 +1,7 @@
+name: update NPM dependencies
+descriptions: craete a apull reqest  when athere os a change in [aclage .json ]
+
+runs:
+
+  using: node 24.0.0
+  main: index.js
