@@ -1,0 +1,16 @@
+
+name: 18 - 3 - Reusable Workflows from other  repo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/18-1-reusable-workflow.yaml
+    with:
+      target-directory: dummmy-dir
+  e2e-tests:
+    uses: madhukiran999/github-actions-cypress-e2e/.github/workflows/e2e.yaml@main
+    needs: deploy
+    secrets:
+      access-token: ${{ secrets.GH_TOKEN }}
