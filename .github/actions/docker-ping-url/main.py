@@ -2,43 +2,49 @@ import os
 import requests
 import time
 
-def ping_url(url,delay,max_trails):
-   trails=0
-   while trails < max_trails:
-      try:
-         response=requests.get(url)
-         if response.status_code==200:
-            print(f"website {url} is reachable")
-            return True
-      except requests.ConnectionError:
-         print(f"website {url} is unreachable retry in {delay} seconds..")
-         time.sleep(delay)
-         trails += 1
 
-      except requests.exceptions.MissingSchema:
-         print(f"invalid url {url}. make sure it has valid schema ")
+def set_output(file_path, key, value):
+    with open(file_path, 'a') as file:
+        print(f'{key}={value}', file=file)
 
 
-   return False
+def ping_url(url, delay, max_trials):
+    trials = 0
+
+    while trials < max_trials:
+        try:
+            response = requests.get(url)
+            if response.status_code == 200:
+                print(f"Website {url} is reachable.")
+                return True
+        except requests.ConnectionError:
+            print(f"Website {url} is unreachable. Retrying in {delay} seconds...")
+            time.sleep(delay)
+            trials += 1
+        except requests.exceptions.MissingSchema:
+            print(f"Invalid URL format: {url}. Make sure the URL has a valid schema (e.g., http:// or https://)")
+            return False
+    
+    return False
 
 
-
-
-   
 def run():
-   website_url = os.getenv("INPUT_URL")
-   delay=int(os.getenv("INPUT_DELAY"))
-   max_trails=int(os.getenv("INPUT_MAX_TRAILS"))
+    website_url = os.getenv("INPUT_URL")
+    delay = int(os.getenv("INPUT_DELAY"))
+    max_trials = int(os.getenv("INPUT_MAX_TRIALS"))
 
-   website_reachable = ping_url(website_url,delay,max_trails)
+    website_reachable = ping_url(website_url, delay, max_trials)
 
-   if not website_reachable:
-      raise Exception(f"website is unreachable after {max_trails} attempts. Please check the url {website_url} and try again")
-      
-   print(f'{website_url} is reachable')
+    set_output(os.getenv('GITHUB_OUTPUT'), 'url-reachable', website_reachable)
+    
+    if not website_reachable:
+        raise Exception(f"Website {website_url} is malformed or unreachable.")
 
-
+    print(f"Website {website_url} is reachable.")
 
 
 if __name__ == "__main__":
-   run()
+    run() 
+
+
+# main.py
