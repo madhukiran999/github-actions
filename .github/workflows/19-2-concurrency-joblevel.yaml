@@ -2,7 +2,7 @@
 # about how to define concurrency groups and how
 # concurrency is managed on GitHub Actions.
 
-name: 19 - 1 - Managing Concurrency
+name: 19 - 2 - Managing Concurrency
 
 on:
   workflow_dispatch:
